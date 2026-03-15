@@ -3,15 +3,15 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Toggle } from "@/components/ui/toggle";
-import { CodeInput } from "@/components/ui/code-input";
+import { CodeEditorWithHighlight } from "@/components/ui/code-editor-highlight";
 import {
-	TableRow,
-	RankCell,
-	ScoreCell,
 	CodeCell,
 	LangCell,
+	RankCell,
+	ScoreCell,
+	TableRow,
 } from "@/components/ui/table-row";
+import { Toggle } from "@/components/ui/toggle";
 
 export default function Home() {
 	const [code, setCode] = useState("");
@@ -33,22 +33,7 @@ export default function Home() {
 
 			{/* Code Input */}
 			<div className="flex justify-center">
-				<CodeInput
-					placeholder={`function calculateTotal(items) {
-  var total = 0;
-  // TODO: fix this
-  for (var i = 0; i < items.length; i++) {
-    if (items[i].price > 100) {
-      total = total + items[i].price * 0.9;
-      console.log("discount applied");
-    }
-  }
-  return total;
-}`}
-					rows={16}
-					value={code}
-					onChange={(e) => setCode(e.target.value)}
-				/>
+				<CodeEditorWithHighlight onCodeChange={(newCode) => setCode(newCode)} />
 			</div>
 
 			{/* Actions Bar */}
